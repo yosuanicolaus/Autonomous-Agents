@@ -56,7 +56,9 @@ func arrive(target: Vector2):
 func wander():
 	wander_rotator.rotation_degrees += rand_range(-rotate_strength, rotate_strength)
 	var target = wander_target.global_position
-	seek(target)
+	var wan = seek(target)
+	wan *= 0.3
+	acceleration += wan
 
 
 func check_wall():
@@ -85,16 +87,38 @@ func separate(vehicles):
 	if count > 0:
 		sum /= count
 		set_steer(sum)
+		return steer
 
-	return steer
-
-
-func align():
-	pass
+	return Vector2.ZERO
 
 
-func cohesion():
-	pass
+func align(vehicles):
+	var sum := Vector2.ZERO
+	var count = len(vehicles)
+
+	for vehicle in vehicles:
+		sum += vehicle.velocity
+
+	if count > 0:
+		sum /= count
+		set_steer(sum)
+		return steer
+
+	return Vector2.ZERO
+
+
+func cohesion(vehicles):
+	var sum := Vector2.ZERO
+	var count = len(vehicles)
+
+	for vehicle in vehicles:
+		sum += vehicle.position
+
+	if count > 0:
+		sum /= count
+		return seek(sum)
+
+	return Vector2.ZERO
 
 
 func get_neighbors(radius):
@@ -108,17 +132,24 @@ func get_neighbors(radius):
 
 
 func apply_behaviours():
+	if len(get_neighbors(neighbor_radius)) == 0:
+		wander()
+	else:
+		flock()
+
+
+func flock():
 	var sep = separate(get_neighbors(separate_radius))
-	# var ali = align()
-	# var coh = cohesion()
+	var ali = align(get_neighbors(neighbor_radius))
+	var coh = cohesion(get_neighbors(neighbor_radius))
 
 	sep *= 1.5
-	# ali *= 1.0
-	# coh *= 1.0
+	ali *= 1.0
+	coh *= 1.0
 
 	acceleration += sep
-	# acceleration += ali
-	# acceleration += coh
+	acceleration += ali
+	acceleration += coh
 
 
 func _process(delta):
