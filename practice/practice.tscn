@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://practice/instancer.gd" type="Script" id=1]
+[ext_resource path="res://practice/vehicle.tscn" type="PackedScene" id=2]
 
 [node name="Practice" type="Node2D"]
-
-[node name="Test" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+script = ExtResource( 1 )
+object = ExtResource( 2 )
+count = 2
