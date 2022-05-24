@@ -17,6 +17,16 @@ func seek(target: Vector2):
 	acceleration += steer
 
 
+func flee(target: Vector2):
+	var desired = position - target
+	desired = desired.normalized()
+	desired *= max_speed
+
+	var steer = desired - velocity
+	steer = steer.clamped(max_force)
+	acceleration += steer
+
+
 func _process(delta):
 	var target = get_global_mouse_position()
 	seek(target)
