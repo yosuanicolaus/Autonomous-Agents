@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://practice/vehicle.gd" type="Script" id=1]
 [ext_resource path="res://practice/screen_wrap.gd" type="Script" id=2]
@@ -10,6 +10,10 @@ size = Vector3( 20, 30, 2 )
 [sub_resource type="SphereMesh" id=2]
 radius = 3.0
 height = 6.0
+
+[sub_resource type="SphereMesh" id=3]
+radius = 120.0
+height = 240.0
 
 [node name="Vehicle" type="Node2D" groups=["vehicles"]]
 script = ExtResource( 1 )
@@ -37,3 +41,7 @@ texture = ExtResource( 3 )
 
 [node name="ScreenWrap" type="Node" parent="."]
 script = ExtResource( 2 )
+
+[node name="NeighborRadar" type="MeshInstance2D" parent="."]
+modulate = Color( 1, 1, 1, 0.0392157 )
+mesh = SubResource( 3 )

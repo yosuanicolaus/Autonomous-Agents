@@ -5,6 +5,7 @@ export var max_force := 4.0
 export var slow_radius := 150.0
 export var rotate_strength := 50.0
 export var separate_radius := 75.0
+export var neighbor_radius := 120.0
 
 var acceleration: Vector2
 var velocity: Vector2
@@ -70,40 +71,54 @@ func check_wall():
 		desired = Vector2(velocity.x, max_speed)
 
 
-func separate():
-	var vehicles = get_tree().get_nodes_in_group("vehicles")
+func separate(vehicles):
 	var sum := Vector2.ZERO
-	var count := 0
+	var count = len(vehicles)
 
 	for vehicle in vehicles:
 		var diff = position.distance_to(vehicle.position)
-		if diff > 0 and diff < separate_radius:
-			var target = position - vehicle.position
-			target = target.normalized()
-			target /= diff
-			sum += target
-			count += 1
+		var target = position - vehicle.position
+		target = target.normalized()
+		target /= diff
+		sum += target
 
 	if count > 0:
 		sum /= count
 		set_steer(sum)
-		var c = count * 0.2
-		modulate = Color(1, 1 - c, 1 - c)
-	else:
-		modulate = Color(1, 1, 1)
 
 	return steer
 
 
+func align():
+	pass
+
+
+func cohesion():
+	pass
+
+
+func get_neighbors(radius):
+	var vehicles = get_tree().get_nodes_in_group("vehicles")
+	var neighbors = []
+	for vehicle in vehicles:
+		var diff = position.distance_to(vehicle.position)
+		if diff > 0 and diff < radius:
+			neighbors.append(vehicle)
+	return neighbors
+
+
 func apply_behaviours():
-	var separate = separate()
-	var seek = seek(get_global_mouse_position())
+	var sep = separate(get_neighbors(separate_radius))
+	# var ali = align()
+	# var coh = cohesion()
 
-	separate *= 1.5
-	seek *= 0.5
+	sep *= 1.5
+	# ali *= 1.0
+	# coh *= 1.0
 
-	acceleration += separate
-	acceleration += seek
+	acceleration += sep
+	# acceleration += ali
+	# acceleration += coh
 
 
 func _process(delta):
