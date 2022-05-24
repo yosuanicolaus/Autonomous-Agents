@@ -15,7 +15,6 @@ height = 6.0
 script = ExtResource( 1 )
 
 [node name="Triangle" type="MeshInstance2D" parent="."]
-modulate = Color( 0.67451, 1, 0.960784, 1 )
 position = Vector2( 2, 0 )
 rotation = -1.5708
 mesh = SubResource( 1 )
