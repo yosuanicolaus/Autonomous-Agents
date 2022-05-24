@@ -12,6 +12,8 @@ var steer = Vector2.ZERO
 
 onready var wander_rotator = $WanderRotator
 onready var wander_target = $WanderRotator/WanderTarget
+onready var vision = $WallVision
+onready var screen = get_viewport_rect().size
 
 
 func seek(target: Vector2):
@@ -56,7 +58,20 @@ func wander():
 	seek(target)
 
 
+func check_wall():
+	var vision_position = vision.global_position
+	if vision_position.x > screen.x:
+		desired = Vector2(-max_speed, velocity.y)
+	if vision_position.x < 0:
+		desired = Vector2(max_speed, velocity.y)
+	if vision_position.y > screen.y:
+		desired = Vector2(velocity.x, -max_speed)
+	if vision_position.y < 0:
+		desired = Vector2(velocity.x, max_speed)
+
+
 func _process(delta):
+	# seek(get_global_mouse_position())
 	wander()
 	velocity += acceleration
 	velocity = velocity.clamped(max_speed)
