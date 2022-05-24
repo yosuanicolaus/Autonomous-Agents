@@ -4,11 +4,12 @@ export var max_speed := 250.0
 export var max_force := 5.0
 export var slow_radius := 150.0
 export var rotate_strength := 50.0
+export var separate_radius := 75.0
 
-var acceleration := Vector2.ZERO
-var velocity := Vector2.ZERO
-var desired = Vector2.ZERO
-var steer = Vector2.ZERO
+var acceleration: Vector2
+var velocity: Vector2
+var desired: Vector2
+var steer: Vector2
 
 onready var wander_rotator = $WanderRotator
 onready var wander_target = $WanderRotator/WanderTarget
@@ -70,9 +71,35 @@ func check_wall():
 		desired = Vector2(velocity.x, max_speed)
 
 
+func separate():
+	var vehicles = get_tree().get_nodes_in_group("vehicles")
+	var sum := Vector2.ZERO
+	var count := 0
+
+	for vehicle in vehicles:
+		var diff = (vehicle.position - position).length()
+		if diff > 0 and diff < separate_radius:
+			var target = position - vehicle.position
+			sum += target
+			count += 1
+
+	if count > 0:
+		sum /= count
+		sum = sum.normalized()
+		sum *= max_speed
+
+		steer = sum - position
+		steer = steer.clamped(max_force)
+		acceleration += steer
+		var c = count * 50
+		modulate = Color(255, 255 - c, 255 - c)
+	else:
+		modulate = Color(1, 1, 1)
+
+
 func _process(delta):
-	# seek(get_global_mouse_position())
-	wander()
+	# wander()
+	separate()
 	velocity += acceleration
 	velocity = velocity.clamped(max_speed)
 	look_at(position + velocity)
