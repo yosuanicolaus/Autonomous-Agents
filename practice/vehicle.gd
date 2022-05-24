@@ -6,30 +6,32 @@ export var slow_radius := 150
 
 var acceleration := Vector2.ZERO
 var velocity := Vector2.ZERO
+var desired = Vector2.ZERO
+var steer = Vector2.ZERO
 
 
 func seek(target: Vector2):
-	var desired: Vector2 = target - position
+	desired = target - position
 	desired = desired.normalized()
 	desired *= max_speed
 
-	var steer: Vector2 = desired - velocity
+	steer = desired - velocity
 	steer = steer.clamped(max_force)
 	acceleration += steer
 
 
 func flee(target: Vector2):
-	var desired = position - target
+	desired = position - target
 	desired = desired.normalized()
 	desired *= max_speed
 
-	var steer = desired - velocity
+	steer = desired - velocity
 	steer = steer.clamped(max_force)
 	acceleration += steer
 
 
 func arrive(target: Vector2):
-	var desired: Vector2 = target - position
+	desired = target - position
 	var desired_length = desired.length()
 	desired = desired.normalized()
 	if desired_length < slow_radius:
@@ -38,7 +40,7 @@ func arrive(target: Vector2):
 	else:
 		desired *= max_speed
 
-	var steer: Vector2 = desired - velocity
+	steer = desired - velocity
 	steer = steer.clamped(max_speed)
 	acceleration += steer
 
