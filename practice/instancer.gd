@@ -15,3 +15,11 @@ func _ready():
 		obj.position = Vector2(x, y)
 		obj.rotation_degrees = randf() * 360
 		add_child(obj)
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			var obj = object.instance()
+			obj.position = event.position
+			add_child(obj)
