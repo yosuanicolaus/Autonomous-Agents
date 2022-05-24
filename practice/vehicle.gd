@@ -1,13 +1,17 @@
 extends Node2D
 
-export var max_speed := 400.0
-export var max_force := 15.0
-export var slow_radius := 150
+export var max_speed := 250.0
+export var max_force := 5.0
+export var slow_radius := 150.0
+export var rotate_strength := 50.0
 
 var acceleration := Vector2.ZERO
 var velocity := Vector2.ZERO
 var desired = Vector2.ZERO
 var steer = Vector2.ZERO
+
+onready var wander_rotator = $WanderRotator
+onready var wander_target = $WanderRotator/WanderTarget
 
 
 func seek(target: Vector2):
@@ -45,10 +49,15 @@ func arrive(target: Vector2):
 	acceleration += steer
 
 
+func wander():
+	wander_rotator.rotation_degrees += rand_range(-rotate_strength, rotate_strength)
+	var target = wander_target.global_position
+
+	seek(target)
+
+
 func _process(delta):
-	var target = get_global_mouse_position()
-	# seek(target)
-	arrive(target)
+	wander()
 	velocity += acceleration
 	velocity = velocity.clamped(max_speed)
 	look_at(position + velocity)

@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="Autonomous Agents"
+run/main_scene="res://practice/practice.tscn"
 config/icon="res://icon.png"
 
 [physics]
