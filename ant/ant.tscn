@@ -1,0 +1,100 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://ant/ant_walk.png" type="Texture" id=1]
+
+[sub_resource type="AtlasTexture" id=64]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=65]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 808, 0, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=66]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 248, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=67]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 808, 248, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=68]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 496, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=69]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 808, 496, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=70]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 744, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=71]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 808, 744, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=72]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 992, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=73]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 808, 992, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=74]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1240, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=75]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 808, 1240, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=76]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1488, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=77]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 808, 1488, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=78]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1736, 202, 248 )
+
+[sub_resource type="AtlasTexture" id=79]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 808, 1736, 202, 248 )
+
+[sub_resource type="SpriteFrames" id=63]
+animations = [ {
+"frames": [ SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ) ],
+"loop": true,
+"name": "walk",
+"speed": 32.0
+} ]
+
+[node name="Ant" type="Node2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 63 )
+animation = "walk"
+frame = 12
+playing = true
