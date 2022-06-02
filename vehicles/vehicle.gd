@@ -132,6 +132,11 @@ func get_neighbors(radius):
 
 
 func apply_behaviours():
+	# follow_mouse()
+	wander_flock()
+
+
+func wander_flock():
 	if len(get_neighbors(neighbor_radius)) == 0:
 		wander()
 	else:
@@ -150,6 +155,17 @@ func flock():
 	acceleration += sep
 	acceleration += ali
 	acceleration += coh
+
+
+func follow_mouse():
+	var sep = separate(get_neighbors(separate_radius))
+	var se = seek(get_global_mouse_position())
+
+	sep *= 1.5
+	se *= 0.5
+
+	acceleration += sep
+	acceleration += se
 
 
 func _process(delta):
