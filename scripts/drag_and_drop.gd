@@ -1,7 +1,7 @@
 extends Node2D
 
-var can_grab = false
-var grabbed_offset = Vector2()
+var can_grab := false
+var grabbed_offset := Vector2()
 
 
 func _input_event(_viewport, event, _shape_idx):

@@ -1,12 +1,12 @@
 extends Node2D
 
 export(PackedScene) var object
-export(int) var count = 10
+export(int) var count := 10
 
-var dragging = false
-var frame = 0
+var dragging := false
+var frame := 0
 
-onready var screen = get_viewport_rect().size
+onready var screen := get_viewport_rect().size
 
 
 func _ready():
