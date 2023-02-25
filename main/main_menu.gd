@@ -15,3 +15,11 @@ func _on_ButtonBall_pressed():
 
 func _on_ButtonAgents_pressed():
 	return get_tree().change_scene(path_agent)
+
+
+func _on_LinkButton_pressed():
+	return OS.shell_open("https://natureofcode.com/book/chapter-6-autonomous-agents/")
+
+
+func _on_Copyright_pressed():
+	return OS.shell_open("https://github.com/yosuanicolaus/Autonomous-Agents")

@@ -33,14 +33,13 @@ text = "This project is based on Daniel Shiffman's book-
 Nature of Code, specifically chapter 6 about Autonomous Agents"
 align = 1
 
-[node name="Label3" type="Label" parent="."]
+[node name="Copyright" type="LinkButton" parent="."]
 margin_left = 372.0
 margin_top = 561.0
 margin_right = 625.0
 margin_bottom = 581.0
 custom_fonts/font = SubResource( 3 )
 text = "© copyright Yosua Nicolaus 2023"
-align = 1
 
 [node name="LinkButton" type="LinkButton" parent="."]
 margin_left = 200.0
@@ -52,28 +51,30 @@ text = "https://natureofcode.com/book/chapter-6-autonomous-agents/"
 
 [node name="ButtonAnt" type="Button" parent="."]
 margin_left = 318.0
-margin_top = 362.0
+margin_top = 476.0
 margin_right = 674.0
-margin_bottom = 397.0
+margin_bottom = 511.0
 custom_fonts/font = ExtResource( 4 )
-text = "Ant Colony (work in progress)"
+text = "Ant Colony"
 
 [node name="ButtonBall" type="Button" parent="."]
 margin_left = 318.0
-margin_top = 421.0
+margin_top = 363.0
 margin_right = 674.0
-margin_bottom = 456.0
+margin_bottom = 398.0
 custom_fonts/font = ExtResource( 4 )
 text = "Separate Ball simulation"
 
 [node name="ButtonAgents" type="Button" parent="."]
 margin_left = 318.0
-margin_top = 476.0
+margin_top = 418.0
 margin_right = 674.0
-margin_bottom = 511.0
+margin_bottom = 453.0
 custom_fonts/font = ExtResource( 4 )
 text = "Autonomous Agents"
 
+[connection signal="pressed" from="Copyright" to="." method="_on_Copyright_pressed"]
+[connection signal="pressed" from="LinkButton" to="." method="_on_LinkButton_pressed"]
 [connection signal="pressed" from="ButtonAnt" to="." method="_on_ButtonAnt_pressed"]
 [connection signal="pressed" from="ButtonBall" to="." method="_on_ButtonBall_pressed"]
 [connection signal="pressed" from="ButtonAgents" to="." method="_on_ButtonAgents_pressed"]
