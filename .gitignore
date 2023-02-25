@@ -1,4 +1,5 @@
 .import
 .mono
+.godot
 *.csproj
 *.sln

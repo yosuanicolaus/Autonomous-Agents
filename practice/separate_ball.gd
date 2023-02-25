@@ -1,8 +1,8 @@
 extends Node2D
 
-export var desired_separation = 40
-export var max_speed = 100
-export var max_force = 20
+@export var desired_separation = 40
+@export var max_speed = 100
+@export var max_force = 20
 
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
@@ -27,10 +27,10 @@ func _process(delta):
 		sum *= max_speed
 
 		var steer = sum - velocity
-		steer = steer.clamped(max_force)
+		steer = steer.limit_length(max_force)
 		acceleration += steer
 
 	velocity += acceleration
-	velocity = velocity.clamped(max_speed)
+	velocity = velocity.limit_length(max_speed)
 	position += velocity * delta
 	acceleration = Vector2.ZERO

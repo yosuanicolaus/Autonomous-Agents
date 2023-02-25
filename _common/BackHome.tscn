@@ -1,24 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://nt86vrj8quav"]
 
-[ext_resource path="res://!assets/font.tres" type="DynamicFont" id=1]
-[ext_resource path="res://_common/back_home.gd" type="Script" id=2]
+[ext_resource type="Script" path="res://_common/back_home.gd" id="2"]
 
 [node name="BackHome" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Button" type="Button" parent="."]
-margin_left = 21.0
-margin_top = 22.0
-margin_right = 186.0
-margin_bottom = 57.0
-custom_fonts/font = ExtResource( 1 )
+offset_left = 21.0
+offset_top = 22.0
+offset_right = 186.0
+offset_bottom = 57.0
 text = "Back to Home"
 
 [node name="Label" type="Label" parent="."]
-margin_left = 21.0
-margin_top = 72.0
-margin_right = 281.0
-margin_bottom = 86.0
-text = "* click on any area to spawn new objects"
+offset_left = 21.0
+offset_top = 72.0
+offset_right = 281.0
+offset_bottom = 86.0
+text = "* click any area to spawn new objects"
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

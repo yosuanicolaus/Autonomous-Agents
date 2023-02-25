@@ -1,21 +1,21 @@
 extends Node2D
 
-export var max_speed := 250.0
-export var max_force := 4.0
-export var slow_radius := 150.0
-export var rotate_strength := 50.0
-export var separate_radius := 75.0
-export var neighbor_radius := 120.0
+@export var max_speed := 250.0
+@export var max_force := 4.0
+@export var slow_radius := 150.0
+@export var rotate_strength := 50.0
+@export var separate_radius := 75.0
+@export var neighbor_radius := 120.0
 
 var acceleration: Vector2
 var velocity: Vector2
 var desired: Vector2
 var steer: Vector2
 
-onready var wander_rotator = $WanderRotator
-onready var wander_target = $WanderRotator/WanderTarget
-onready var vision = $WallVision
-onready var screen = get_viewport_rect().size
+@onready var wander_rotator = $WanderRotator
+@onready var wander_target = $WanderRotator/WanderTarget
+@onready var vision = $WallVision
+@onready var screen = get_viewport_rect().size
 
 
 func set_steer(target: Vector2):
@@ -23,7 +23,7 @@ func set_steer(target: Vector2):
 	desired = desired.normalized()
 	desired *= max_speed
 	steer = desired - velocity
-	steer = steer.clamped(max_force)
+	steer = steer.limit_length(max_force)
 
 
 func seek(seek_target: Vector2):
@@ -49,12 +49,12 @@ func arrive(target: Vector2):
 		desired *= max_speed
 
 	steer = desired - velocity
-	steer = steer.clamped(max_force)
+	steer = steer.limit_length(max_force)
 	return steer
 
 
 func wander():
-	wander_rotator.rotation_degrees += rand_range(-rotate_strength, rotate_strength)
+	wander_rotator.rotation_degrees += randf_range(-rotate_strength, rotate_strength)
 	var target = wander_target.global_position
 	var wan = seek(target)
 	wan *= 0.3
@@ -171,7 +171,7 @@ func follow_mouse():
 func _process(delta):
 	apply_behaviours()
 	velocity += acceleration
-	velocity = velocity.clamped(max_speed)
+	velocity = velocity.limit_length(max_speed)
 	look_at(position + velocity)
 	position += velocity * delta
 	acceleration = Vector2.ZERO

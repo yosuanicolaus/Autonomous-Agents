@@ -11,5 +11,5 @@ func _input_event(_viewport, event, _shape_idx):
 
 
 func _process(_delta):
-	if Input.is_mouse_button_pressed(BUTTON_LEFT) and can_grab:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and can_grab:
 		position = get_global_mouse_position() + grabbed_offset
