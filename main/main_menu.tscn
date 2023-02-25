@@ -2,7 +2,7 @@
 
 [ext_resource path="res://!assets/PoetsenOne-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://!assets/font_big.tres" type="DynamicFont" id=2]
-[ext_resource path="res://main/main_menu.cs" type="Script" id=3]
+[ext_resource path="res://main/main_menu.gd" type="Script" id=3]
 [ext_resource path="res://!assets/font.tres" type="DynamicFont" id=4]
 
 [sub_resource type="DynamicFont" id=3]
@@ -73,3 +73,7 @@ margin_right = 674.0
 margin_bottom = 511.0
 custom_fonts/font = ExtResource( 4 )
 text = "Autonomous Agents"
+
+[connection signal="pressed" from="ButtonAnt" to="." method="_on_ButtonAnt_pressed"]
+[connection signal="pressed" from="ButtonBall" to="." method="_on_ButtonBall_pressed"]
+[connection signal="pressed" from="ButtonAgents" to="." method="_on_ButtonAgents_pressed"]
