@@ -14,6 +14,10 @@ config/name="Autonomous Agents"
 run/main_scene="res://vehicles/practice.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/resizable=false
+
 [mono]
 
 project/assembly_name="Autonomous Agents"
